@@ -43,28 +43,28 @@ buttons.map(button => {
                 actualString += b12[1];
                 break;
             case '√':
-
+                display.innerText += "√("
                 break;
             case 'π':
-
+                display.innerText += "π"
                 break;
             case 'e':
                 display.innerText += "e";
                 break;
             case 'ln':
-                display.innerText += 'ln.(';
+                display.innerText += 'ln(';
                 break;
             case 'log':
-                display.innerText += 'log.(';
+                display.innerText += 'log(';
                 break;
             case 'sin':
-                display.innerText += 'sin.(';
+                display.innerText += 'sin(';
                 break;
             case 'cos':
-                display.innerText += 'cos.(';
+                display.innerText += 'cos(';
                 break;
             case 'tan':
-                display.innerText += 'tan.(';
+                display.innerText += 'tan(';
                 break;
             case '-':
                 if (display.innerText.slice(-1) == "-") {
@@ -76,9 +76,16 @@ buttons.map(button => {
             case '=':
                 try {
                     hiddenString = display.innerText;
-                    while (hiddenString.includes('^')) {
-                        hiddenString = hiddenString.replace('^', '**');
-                    }
+                    hiddenString = hiddenString.replaceAll('^', '**');
+                    hiddenString = hiddenString.replaceAll('√', 'Math.sqrt');
+                    hiddenString = hiddenString.replaceAll('π', 'Math.PI');
+                    hiddenString = hiddenString.replaceAll('e', 'Math.E');
+                    hiddenString = hiddenString.replaceAll('ln', 'Math.log');
+                    hiddenString = hiddenString.replaceAll('log', 'Math.log10');
+                    hiddenString = hiddenString.replaceAll('sin', 'Math.sin');
+                    hiddenString = hiddenString.replaceAll('cos', 'Math.cos');
+                    hiddenString = hiddenString.replaceAll('tan', 'Math.tan');
+                    console.log(hiddenString);
                     display.innerText = eval(hiddenString);
                 } catch {
                     display.innerText = "Error"
@@ -87,11 +94,9 @@ buttons.map(button => {
             case '←':
                 if (display.innerText) {
                     display.innerText = display.innerText.slice(0, -1);
-                    actualString = actualString.slice(0, -1);
                 }
                 break;
             case 'Mode':
-                //console.log(display.innerText);
                 advancedButtons.forEach(button => {
                     button.style.display = button.style.display == 'none' ? 'grid' : 'none';
                 });
