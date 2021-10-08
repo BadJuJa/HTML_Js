@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        width: 250px;
+        background-color: white;
+        border: solid black;
+      ">
+        <div style="
+          background-color: gray;
+          border-bottom: dotted black;
+          padding: 3px;
+          font-family: sans-serif;
+          font-weight: bold;
+        " onmousedown="drag(this.parentNode, event);">
+            Перетащи меня
+        </div>
+
+        <p>Это тест. Проверка, проверка, проверка.</p>
+        <p>Тест</p>
+        <p>Тест</p>
+    </div>
+
+    <script src="n12.js"></script>
+</body>
+
+</html>
