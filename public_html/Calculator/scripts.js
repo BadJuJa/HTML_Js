@@ -1,107 +1,171 @@
-function forFact(number) {
-    if (number < 0) {
-        return 'Факториал отрицательного числа не найден';
-    } else if (number == 0) {
-        return 1;
-    } else {
-        result = 1;
-        for (let i = number; i > 1; i--) {
-            result *= i;
+let display = document.getElementById("display");
+let typeButton = document.getElementById("type-button");
+let advancedButtons = Array.from(
+    document.getElementsByClassName("advanced-button")
+);
+
+let buttons = Array.from(document.getElementsByClassName("button"));
+
+let curType = 'Rad';
+
+var exprs = {
+    "^": "**",
+    "e": "Math.E",
+    "π": "Math.PI",
+    "√": "Math.sqrt",
+    "log": "Math.log10",
+    "ln": "Math.log",
+    "sin": ["Math.sin", "Math.sin(Math.PI/180*"],
+    "cos": ["Math.cos", "Math.cos(Math.PI/180*"],
+    "tan": ["Math.tan", "Math.tan(Math.PI/180*"],
+};
+
+function getListIdx(str, substr) {
+    let listIdx = []
+    let lastIndex = -1
+    while ((lastIndex = str.indexOf(substr, lastIndex + 1)) !== -1) {
+        listIdx.push(lastIndex)
+    }
+    return listIdx
+}
+
+function toEvalString(string) {
+    innerText = string;
+    Object.keys(exprs).forEach(expr => {
+        if (innerText.includes(expr) && expr != "^") {
+            regExp = new RegExp(expr);
+            buf = innerText;
+            newInnerTextParts = [];
+            for (let i = 0; i < getListIdx(innerText, expr).length; i++) {
+                exprPos = buf.indexOf(expr);
+                _slice = buf.slice(exprPos - 1, exprPos);
+                if (_slice != "(" && _slice != "*" && _slice != '+' && _slice != '-' && _slice != '/' && exprPos != 0) {
+                    newInnerTextParts.push(buf.slice(0, exprPos + expr.length).replace(expr, "*" + expr));
+                } else {
+                    newInnerTextParts.push(buf.slice(0, exprPos + expr.length));
+                }
+                buf = buf.slice(exprPos + expr.length);
+            }
+            newInnerTextParts.push(buf);
+            innerText = newInnerTextParts.join("");
         }
-        return result;
+    })
+
+    innerText = innerText.replaceAll('(', '((');
+    innerText = innerText.replaceAll(')', '))');
+
+    Object.keys(exprs).forEach(expr => {
+        if (expr == "sin" || expr == "cos" || expr == "tan") {
+            if (curType == "Deg") {
+                innerText = innerText.replaceAll(expr + '(', exprs[expr][1]);
+            } else {
+                innerText = innerText.replaceAll(expr, exprs[expr][0]);
+            }
+        } else {
+            innerText = innerText.replaceAll(expr, exprs[expr]);
+        }
+    })
+
+    return innerText;
+}
+
+function displayCheck() {
+    if (display.innerText == "Error" || display.innerText == "Infinity") {
+        display.innerText = "";
     }
 }
 
-function factorial(actString) {
+typeButton.addEventListener("click", (e) => {
+    e.target.innerText = curType = e.target.innerText == "Rad" ? "Deg" : "Rad";
+})
 
-}
-
-let display = document.getElementById('display');
-let advancedButtons = Array.from(document.getElementsByClassName('advanced-button'));
-
-let buttons = Array.from(document.getElementsByClassName('button'));
-
-buttons.map(button => {
-    button.addEventListener('click', (e) => {
+buttons.map((button) => {
+    button.addEventListener("click", (e) => {
         switch (e.target.innerText) {
-            case 'C':
-                display.innerText = '';
+            case "C":
+                display.innerText = "";
                 break;
-            case 'x^2':
-                display.innerText += '^2';
+            case "x^2":
+                displayCheck();
+                display.innerText += "^2";
                 break;
-            case 'x^3':
-                display.innerText += '^3';
+            case "x^3":
+                displayCheck();
+                display.innerText += "^3";
                 break;
-            case 'x^y':
-                display.innerText += '^';
+            case "x^y":
+                displayCheck();
+                display.innerText += "^";
                 break;
-            case 'x!':
-                display.innerText += '!';
-                b12 = factorial(actualString);
-                actualString = actualString.slice(0, actualString.lastIndexOf(b12[0] + 1));
-                actualString += b12[1];
+            case "Rad":
                 break;
-            case '√':
-                display.innerText += "√("
+            case "Deg":
                 break;
-            case 'π':
-                display.innerText += "π"
+            case "√":
+                displayCheck();
+                display.innerText += "√(";
                 break;
-            case 'e':
+            case "π":
+                displayCheck();
+                display.innerText += "π";
+                break;
+            case "e":
+                displayCheck();
                 display.innerText += "e";
                 break;
-            case 'ln':
-                display.innerText += 'ln(';
+            case "ln":
+                displayCheck();
+                display.innerText += "ln(";
                 break;
-            case 'log':
-                display.innerText += 'log(';
+            case "log":
+                displayCheck();
+                display.innerText += "log(";
                 break;
-            case 'sin':
-                display.innerText += 'sin(';
+            case "sin":
+                displayCheck();
+                display.innerText += "sin(";
                 break;
-            case 'cos':
-                display.innerText += 'cos(';
+            case "cos":
+                displayCheck();
+                display.innerText += "cos(";
                 break;
-            case 'tan':
-                display.innerText += 'tan(';
+            case "tan":
+                displayCheck();
+                display.innerText += "tan(";
                 break;
-            case '-':
+            case "-":
+                displayCheck();
                 if (display.innerText.slice(-1) == "-") {
                     return;
                 } else {
-                    display.innerText += '-';
+                    display.innerText += "-";
                 }
                 break;
-            case '=':
+            case "=":
+                if (display.innerText == "") return;
                 try {
-                    hiddenString = display.innerText;
-                    hiddenString = hiddenString.replaceAll('^', '**');
-                    hiddenString = hiddenString.replaceAll('√', 'Math.sqrt');
-                    hiddenString = hiddenString.replaceAll('π', 'Math.PI');
-                    hiddenString = hiddenString.replaceAll('e', 'Math.E');
-                    hiddenString = hiddenString.replaceAll('ln', 'Math.log');
-                    hiddenString = hiddenString.replaceAll('log', 'Math.log10');
-                    hiddenString = hiddenString.replaceAll('sin', 'Math.sin');
-                    hiddenString = hiddenString.replaceAll('cos', 'Math.cos');
-                    hiddenString = hiddenString.replaceAll('tan', 'Math.tan');
+                    hiddenString = toEvalString(display.innerText);
                     console.log(hiddenString);
-                    display.innerText = eval(hiddenString);
+                    display.innerText = Function('return ' + hiddenString)(); //eval(hiddenString);
                 } catch {
-                    display.innerText = "Error"
+                    display.innerText = "Error";
                 }
                 break;
-            case '←':
+            case "←":
+                displayCheck();
                 if (display.innerText) {
                     display.innerText = display.innerText.slice(0, -1);
                 }
                 break;
-            case 'Mode':
-                advancedButtons.forEach(button => {
-                    button.style.display = button.style.display == 'none' ? 'grid' : 'none';
+            case "Mode":
+                advancedButtons.forEach((button) => {
+                    button.style.display =
+                        button.style.display == "none" ? "grid" : "none";
                 });
                 break;
             default:
+                displayCheck();
+                if (display.innerText == "0") display.innerText = "";
                 display.innerText += e.target.innerText;
         }
     });
