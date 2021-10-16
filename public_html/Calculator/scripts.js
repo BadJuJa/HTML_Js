@@ -144,9 +144,7 @@ buttons.map((button) => {
             case "=":
                 if (display.innerText == "") return;
                 try {
-                    hiddenString = toEvalString(display.innerText);
-                    console.log(hiddenString);
-                    display.innerText = Function('return ' + hiddenString)(); //eval(hiddenString);
+                    display.innerText = Function('return ' + toEvalString(display.innerText))();
                 } catch {
                     display.innerText = "Error";
                 }
