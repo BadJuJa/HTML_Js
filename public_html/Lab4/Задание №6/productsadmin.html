@@ -1,0 +1,478 @@
+<html><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <script>
+            $(document).ready(function () {
+                $('.btn-toggle').click(function () {
+
+                    $(this).find('.btn').toggleClass('active');
+
+                    if ($(this).find('.btn-primary').length > 0) {
+                        $(this).find('.btn').toggleClass('btn-primary');
+                    }
+                    if ($(this).find('.btn-danger').length > 0) {
+                        $(this).find('.btn').toggleClass('btn-danger');
+                    }
+                    if ($(this).find('.btn-success').length > 0) {
+                        $(this).find('.btn').toggleClass('btn-success');
+                    }
+                    if ($(this).find('.btn-info').length > 0) {
+                        $(this).find('.btn').toggleClass('btn-info');
+                    }
+
+                    $(this).find('.btn').toggleClass('btn-default');
+                    return false;
+                });
+            });
+        </script>
+    </head><body>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills">
+                            <li>
+                                <a href="#">Дополнительные справочники</a>
+                            </li>
+                            <li>
+                                <a href="#">Секции категорий</a>
+                            </li>
+                            <li>
+                                <a href="#">Бренды</a>
+                            </li>
+                            <li>
+                                <a href="#">Категории</a>
+                            </li>
+                            <li class="active">
+                                <a href="#">Товары</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Выберите секцию</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="nav nav-justified nav-pills">
+                                    <li class="active">
+                                        <a href="#">Секция 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Секция 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Секция 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Секция 4</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Секция 4</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="btn-link panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Выберите категорию</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item active">Категория 1</a>
+                                    <a href="#" class="list-group-item">Категория 2</a>
+                                    <a href="#" class="list-group-item">Категория 3</a>
+                                    <a href="#" class="list-group-item">Категория 4</a>
+                                    <a href="#" class="list-group-item">Категория 5</a>
+                                    <a href="#" class="list-group-item">Категория 6</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="btn-link panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Выберите товар для редактирования</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="info">id</th>
+                                            <th class="info">Название</th>
+                                            <th class="info">Цена</th>
+                                            <th class="info">Размер</th>
+                                            <th class="info">Цвет</th>
+                                            <th class="info">Продажи</th>
+                                            <th class="info">Новый</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Товар 1</td>
+                                            <td>17890</td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Товар 2</td>
+                                            <td>17890</td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="danger">
+                                            <td>3</td>
+                                            <td>Товар 3</td>
+                                            <td>17890</td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Товар 4</td>
+                                            <td>17890</td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Товар 5</td>
+                                            <td>17890</td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>Товар 6</td>
+                                            <td>17890</td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td>Товар 7</td>
+                                            <td>17890</td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-toggle">
+                                                    <button class="btn btn-default">ON</button>
+                                                    <button class="btn btn-primary active">OFF</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="btn-link panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center text-success">Редактирование товара</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-sm-1 text-center">
+                                            <label>id</label>
+                                            <input type="text" class="form-control" placeholder="id" disabled="">
+                                        </div>
+                                        <div class="col-sm-3 text-center">
+                                            <label>Наименование</label>
+                                            <input type="text" class="form-control" placeholder="Название товара">
+                                        </div>
+                                        <div class="col-sm-4 text-center">
+                                            <label>Полное наименование</label>
+                                            <input type="text" class="form-control" placeholder="Полное наименование">
+                                        </div>
+                                        <div class="col-sm-2 text-center">
+                                            <label>Новый</label>
+                                            <br>
+                                            <div class="btn-group btn-toggle">
+                                                <button class="btn btn-default">ON</button>
+                                                <button class="btn btn-primary active">OFF</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1 text-center">
+                                            <label>Записать</label>
+                                            <a class="btn btn-block btn-success">V</a>
+                                        </div>
+                                        <div class="col-sm-1 text-center">
+                                            <label>Удалить</label>
+                                            <a class="btn btn-block btn-danger">X</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <label>Секция:</label>
+                                                <select class="form-control">
+                                                    <option>Секция №1</option>
+                                                    <option>Секция №2</option>
+                                                    <option>Секция №3</option>
+                                                    <option>Секция №4</option>
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <label>Категория:</label>
+                                                <select class="form-control">
+                                                    <option>Категория №1</option>
+                                                    <option>Категория №2</option>
+                                                    <option>Категория №3</option>
+                                                    <option>Категория №4</option>
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <label>Бренд:</label>
+                                                <select class="form-control">
+                                                    <option>Бренд №1</option>
+                                                    <option>Бренд №2</option>
+                                                    <option>Бренд №3</option>
+                                                    <option>Бренд №4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Краткое описание</label>
+                                            <textarea class="form-control" rows="7">Краткое описание товара.Краткое описание товара.Краткое описание товара.
+                      Краткое описание товара.Краткое описание товара.Краткое описание товара.</textarea>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label>Полное описание</label>
+                                            <textarea class="form-control" rows="7">Полное описание товара.Полное описание товара.Полное описание товара.Полное
+                      описание товара.Полное описание товара.Полное описание товара.Полное описание
+                      товара.Полное описание товара.Полное описание товара.Полное описание товара.Полное
+                      описание товара.Полное описание товара.Полное описание товара. Полное описание
+                      товара. Полное описание товара. Полное описание товара.Полное описание
+                      товара.</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <label>Цена</label>
+                                                <input type="text" class="form-control" placeholder="Цена">
+                                            </div>
+                                            <div class="row">
+                                                <label>Скидка</label>
+                                                <input type="text" class="form-control" placeholder="Скидка">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">Цвета</div>
+                                        <div class="col-md-4">Размеры</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h1 class="text-center">Фото</h1>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+                                                <a class="btn btn-block btn-danger">X</a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+                                                <a class="btn btn-block btn-danger">X</a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+                                                <a class="btn btn-block btn-danger">X</a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+                                                <a class="btn btn-block btn-danger">X</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body></html>

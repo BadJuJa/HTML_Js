@@ -1,0 +1,173 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/checkbox.css" rel='stylesheet' type="text/css">
+    <script type="text/javascript" src="js/datajs.js"></script>
+    <title>Редактирование брендов</title>
+    <script>
+        function getNavTabLi(_object) {
+            return $('<li data-id="' + _object.id + '">' +
+                '<a href="#section' + _object.id + '" data-toggle="tab">' + _object.name + '</a>' +
+                '</li>');
+
+        }
+
+        function getSectionSection(_object) {
+            return $('<div class="tab-pane" id="section' + _object.id + '">' +
+                '<div class="section"></div>' +
+                '</div>');
+        }
+
+        function getSectionBrend(_object) {
+            status = _object.status === 1 ? "checked" : "";
+            return $('<div class="container" data-id="' + _object.id + '">' +
+                '<div class="row">' +
+                '<div class="col-md-12">' +
+                '<form class="form-horizontal" role="form">' +
+                '<div class="form-group">' +
+                '<div class="col-sm-2">' +
+                '<input type="text" class="form-control" placeholder="id" disabled="" value="' + _object.id + '">' +
+                '</div>' +
+                '<div class="col-sm-5">' +
+                '<input type="text" class="form-control" placeholder="Название бренда" value="' + _object.name + '">' +
+                '</div>' +
+                '<div class="col-sm-1">' +
+                '<input type="text" class="form-control" placeholder="Сортировка" value="' + _object.sort + '">' +
+                '</div>' +
+                '<div class="col-sm-2">' +
+                '<div class="material-switch pull-right">' +
+                '<input id="brendstatus' + _object.id + '" name="someSwitchOption001" type="checkbox" ' + status + '/>' +
+                '<label for="brendstatus' + _object.id + '" class="label-success"></label>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-sm-1">' +
+                '<a class="btn btn-block btn-success">V</a>' +
+                '</div>' +
+                '<div class="col-sm-1">' +
+                '<a class="btn btn-block btn-danger mydelete">X</a>' +
+                '</div></div></form></div></div></div>');
+        }
+        $(document).ready(function() {
+            for (index in datasection) {
+                $(".nav-tabs").append(getNavTabLi(datasection[index]));
+                $(".tab-content").append(getSectionSection(datasection[index]));
+                for (indexbr in databrends) {
+                    if (databrends[indexbr].section === datasection[index].id) {
+                        $("#section" + datasection[index].id).find(".section").first().append(getSectionBrend(databrends[indexbr]));
+                    }
+                }
+            }
+            $(".nav-tabs").find("li").first().addClass("active");
+            $(".tab-pane").first().addClass("active");
+            $(".tab-content").click(function(e) {
+                if (!$(e.target).hasClass("mydelete"))
+                    return true;
+                id = parseInt($(e.target).parents("div.container").attr("data-id"));
+                for (index in databrends) {
+                    if (databrends[index].id === id) {
+                        delete databrends[index];
+                    }
+                }
+                delcontainer = $(e.target).parents("div.container").first();
+                delcontainer.fadeOut("slow", function() {
+                    this.remove();
+                });
+            });
+            $("#addbrend").click(function() {
+                console.log($(".nav-tabs").find("li.active"));
+                idsection = parseInt($(".nav-tabs").find("li.active").first().attr("data-id"));
+
+                maxIdBrends++;
+                _object = new Brends(maxIdBrends,
+                    $("#brendnewname").val(),
+                    idsection,
+                    $("#brendnewsort").val(),
+                    $("#brendnewstatus").is(":checked"));
+                databrends.push(_object);
+                $("#section" + idsection).find(".section").first().append(getSectionBrend(_object));
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills">
+                        <li>
+                            <a href="#">Дополнительные справочники</a>
+                        </li>
+                        <li>
+                            <a href="sectionadmin.html">Секции категорий</a>
+                        </li>
+                        <li class="active">
+                            <a href="brendsadmin.html">Бренды</a>
+                        </li>
+                        <li>
+                            <a href="categoriesadmin.html">Категории</a>
+                        </li>
+                        <li>
+                            <a href="productsadmin.html">Товары</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+
+            </div>
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" placeholder="id" disabled="">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="brendnewname" placeholder="Название бренда">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <input type="text" class="form-control" id="brendnewsort" placeholder="Сортировка">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="material-switch pull-right">
+                                            <input id="brendnewstatus" name="someSwitchOption001" type="checkbox" />
+                                            <label for="brendnewstatus" class="label-success"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <a class="btn btn-block btn-success" id="addbrend">V</a>
+                                    </div>
+                                    <div class="col-sm-1">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

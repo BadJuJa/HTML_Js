@@ -1,0 +1,173 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/checkbox.css" rel='stylesheet' type="text/css">
+    <script type="text/javascript" src="js/datajs.js"></script>
+    <title>Редактирование брендов</title>
+    <script>
+        function getNavTabLi(Obj) {
+            return $('<li data-id="' + Obj.id + '">' +
+                '<a href="#section' + Obj.id + '" data-toggle="tab">' + Obj.name + '</a>' +
+                '</li>');
+
+        }
+
+        function getSectionSection(Obj) {
+            return $('<div class="tab-pane" id="section' + Obj.id + '">' +
+                '<div class="section"></div>' +
+                '</div>');
+        }
+
+        function getSectionCategory(Obj) {
+            status = Obj.status === 1 ? "checked" : "";
+            return $('<div class="container" data-id="' + Obj.id + '">' +
+                '<div class="row">' +
+                '<div class="col-md-12">' +
+                '<form class="form-horizontal" role="form">' +
+                '<div class="form-group">' +
+                '<div class="col-sm-2">' +
+                '<input type="text" class="form-control" placeholder="id" disabled="" value="' + Obj.id + '">' +
+                '</div>' +
+                '<div class="col-sm-5">' +
+                '<input type="text" class="form-control" placeholder="Название категории" value="' + Obj.name + '">' +
+                '</div>' +
+                '<div class="col-sm-1">' +
+                '<input type="text" class="form-control" placeholder="Сортировка" value="' + Obj.sort + '">' +
+                '</div>' +
+                '<div class="col-sm-2">' +
+                '<div class="material-switch pull-right">' +
+                '<input id="categorystatus1" name="someSwitchOption001" type="checkbox" ' + status + '/>' +
+                '<label for="categorystatus1" class="label-success"></label>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-sm-1">' +
+                '<a class="btn btn-block btn-success">V</a>' +
+                '</div>' +
+                '<div class="col-sm-1">' +
+                '<a class="btn btn-block btn-danger mydelete">X</a>' +
+                '</div></div></form></div></div></div>'
+            );
+        }
+        $(document).ready(function() {
+            for (index in datasection) {
+                $(".nav-tabs").append(getNavTabLi(datasection[index]));
+                $(".tab-content").append(getSectionSection(datasection[index]));
+                for (indexcat in datacategory) {
+                    if (datacategory[indexcat].section === datasection[index].id) {
+                        $("#section" + datasection[index].id).find(".section").first().append(getSectionCategory(datacategory[indexcat]));
+                    }
+                }
+            }
+            $(".nav-tabs").find("li").first().addClass("active");
+            $(".tab-pane").first().addClass("active");
+            $(".tab-content").click(function(e) {
+                if (!$(e.target).hasClass("mydelete"))
+                    return true;
+                id = parseInt($(e.target).parents("div.container").attr("data-id"));
+                for (index in datacategory) {
+                    if (datacategory[index].id === id) {
+                        delete datacategory[index];
+                    }
+                }
+                delcontainer = $(e.target).parents("div.container").first();
+                delcontainer.fadeOut("slow", function() {
+                    this.remove();
+                });
+            });
+            $("#addcategory").click(function() {
+                console.log($(".nav-tabs").find("li.active"));
+                idsection = parseInt($(".nav-tabs").find("li.active").first().attr("data-id"));
+
+                maxIdCategory++;
+                Obj = new Category(maxIdCategory,
+                    $("#categorynewname").val(),
+                    idsection,
+                    $("#categorynewsort").val(),
+                    $("#categorynewstatus").is(":checked"));
+                databrends.push(Obj);
+                $("#section" + idsection).find(".section").first().append(getSectionCategory(Obj));
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills">
+                        <li>
+                            <a href="#">Дополнительные справочники</a>
+                        </li>
+                        <li>
+                            <a href="sectionadmin.html">Секции категорий</a>
+                        </li>
+                        <li>
+                            <a href="brendsadmin.html">Бренды</a>
+                        </li>
+                        <li>
+                            <a href="categoriesadmin.html">Категории</a>
+                        </li>
+                        <li class="active">
+                            <a href="productsadmin.html">Товары</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+
+            </div>
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" placeholder="id" disabled="">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" placeholder="Название категории" id="categorynewname">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <input type="text" class="form-control" placeholder="Сортировка" id="categorynewsort">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="material-switch pull-right">
+                                            <input name="someSwitchOption001" type="checkbox" id="categorynewstatus" />
+                                            <label for="categorynewstatus" class="label-success"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <a class="btn btn-block btn-success" id="addcategory">V</a>
+                                    </div>
+                                    <div class="col-sm-1"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
