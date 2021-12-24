@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    height: 100%;
+}
+
+#wrapper{ /*добавлено чтобы отправить футтер в конец страницы, а контекст сам расширялся)*/
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#menu{
+    background: blueviolet;
+    height: 50px;
+    flex: 0 0 auto;
+    display: flex;
+}
+#content{
+    background: rgb(221, 206, 250);
+    text-align: -webkit-center; /*выравнивание по центру страницы (вместо <center>)*/
+    flex: 1 0 auto;
+    padding: 20px;
+}
+#footer{
+    background: blueviolet;
+    height: 50px;
+    flex: 0 0 auto;
+    color: #ffffff;
+    text-align: center;
+}
+
+.bmenu{
+    float: left;
+    width: 50%;
+    height: 50px;
+    background: #5D535E;
+}
+.bmenu:hover{
+    background: rgb(77, 145, 247);
+}
+.bmenuactive{
+    float: left;
+    width: 50%;
+    height: 50px;
+    background: #5D535E;
+}
+.bmenuactive:hover{
+    background: rgb(77, 145, 247);
+}
+
+.myRef{
+    display: block;
+    height: 100%;
+    text-align: center;
+    line-height: 50px; /*центрирование текста по вертикали*/
+    color: white;
+    text-decoration: none; /*Отменяем подчеркивание у ссылки*/
+    font-size: 2vw; /*резиновый текст относительно размера окна*/
+}
+#registr{
+    background-color:blueviolet;
+    color: white;
+    flex: 0 0 auto;
+}
+.newbutton{
+    background-color:#b98888;
+    padding: 3px 7px;
+    color: #333333;
+    border-radius: 5px;
+    border: 1px solid #666666;
+    width: 100px;
+    color: white;
+    
+}
+h1{
+    color: rgb(83, 245, 191);
+}
+#numpagesfortable{
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    color: red;
+    width: 50%;
+}
+.pag{
+    color: black;
+    font-size: 50px;
+
+}
+.tablepage{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    justify-content: space-between;
+}

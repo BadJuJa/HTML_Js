@@ -1,0 +1,31 @@
+version: '3.8'
+
+networks:
+    postgres_default:
+        ipam:
+            driver: default
+            config:
+                 - subnet: 192.168.1.0/24
+services:
+  dbp:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: test_db
+    ports:
+      - 5432:5432
+    networks:
+      postgres_default: 
+        ipv4_address: 192.168.1.4
+  dbm:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      postgres_default: 
+        ipv4_address: 192.168.1.5
+    ports:
+      - 3306:3306
