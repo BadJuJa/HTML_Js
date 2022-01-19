@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#wrapper {
+    /*добавлено чтобы отправить футтер в конец страницы, а контекст сам расширялся)*/
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#header {
+    background: rgb(15, 15, 15);
+    height: 100px;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    /*центрирование текста по вертикали*/
+    text-transform: uppercase;
+    /*выводим большими буквами*/
+    font-size: 3vw;
+    /*резиновый текст относительно размера окна*/
+    flex: 0 0 auto;
+}
+
+#menu {
+    background: lightgreen;
+    height: 50px;
+    /*display: flex;*/
+    flex: 0 0 auto;
+}
+
+#content {
+    background: rgb(24, 24, 24);
+    text-align: -webkit-center;
+    /*выравнивание по центру страницы (вместо <center>)*/
+    flex: 1 0 auto;
+}
+
+#footer {
+    background: rgb(15, 15, 15);
+    height: 50px;
+    flex: 0 0 auto;
+    color: rgb(255, 94, 0);
+    text-align: center;
+}
+
+.bmenu {
+    float: left;
+    height: 50px;
+    background: rgba(255, 94, 0, 0.75);
+}
+
+.bmenu:hover {
+    background: rgba(255, 0, 0, 0.825);
+}
+
+.bmenuactive {
+    float: left;
+    height: 50px;
+    background: rgb(255, 94, 0);
+}
+
+.bmenu,
+.bmenuactive {
+    width: 20%;
+}
+
+.bmenuactive:hover {
+    background: rgb(255, 0, 0);
+}
+
+.myRef {
+    display: block;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    text-decoration: none;
+    font-size: 2vw;
+}
+
+#registr {
+    background: rgb(24, 24, 24);
+    color: white;
+    flex: 0 0 auto;
+}
+
+.newbutton {
+    background-color: #b98888;
+    padding: 3px 7px;
+    color: #333333;
+    border-radius: 5px;
+    border: 1px solid #666666;
+    width: 100px;
+    color: white;
+}
